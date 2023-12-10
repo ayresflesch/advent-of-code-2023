@@ -40,7 +40,6 @@ fs.readFile('input.txt', 'utf-8', function (err, data) {
                 const index = parseInt(cardNumber, 10) + j + 1
                 numberAndTimes[index] = numberAndTimes[index] ? numberAndTimes[index] + 1 : 1
             }
-
         }
     })
 
