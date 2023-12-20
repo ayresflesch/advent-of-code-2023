@@ -12,15 +12,12 @@ fs.readFile('input.txt', 'utf-8', function (err, data) {
         return acc
     }, {})
 
-    let reachedZZZ = false
-    let instructionsCount = 0
-
     const instructionsList = instructions.trim().split('')
-
     let currentStep = mazeObj["AAA"]
-
+    
     let i = 0
-    while (!reachedZZZ) {
+    let instructionsCount = 0
+    while (true) {
         const currentInstruction = instructionsList[i];
         i = (i + 1) % instructionsList.length;
 
