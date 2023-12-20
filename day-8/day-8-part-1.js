@@ -27,12 +27,11 @@ fs.readFile('input.txt', 'utf-8', function (err, data) {
         const nextStep = currentStep[currentInstruction]
         currentStep = mazeObj[nextStep]
 
+        instructionsCount++
+
         if (nextStep === "ZZZ") {
-            instructionsCount++
             break
         }
-
-        instructionsCount++
     }
 
     console.log(instructionsCount);
