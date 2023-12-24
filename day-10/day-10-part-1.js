@@ -46,14 +46,9 @@ fs.readFile('input.txt', 'utf-8', function (err, data) {
     let currentPosition = validNextStep[0]
     let loopCount = 0
 
-    while (true) {
+    while (matrix[currentPosition.x][currentPosition.y] !== "S") {
         const { x, y, comingFrom } = currentPosition
 
-        loopCount++
-        if (matrix[currentPosition.x][currentPosition.y] === "S") {
-            break
-        }
-        
         const possibleNextValuesForAllDirections = combinations[matrix[x][y]]
         const nextDirection = Object.keys(possibleNextValuesForAllDirections).find(k => k !== comingFrom)
 
@@ -72,6 +67,7 @@ fs.readFile('input.txt', 'utf-8', function (err, data) {
             currentPosition = { x, y: y + 1, comingFrom: 'left' }
         }
 
+        loopCount++
     }
 
     console.log(Math.ceil(loopCount/2));
