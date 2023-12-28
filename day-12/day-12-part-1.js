@@ -5,13 +5,13 @@ fs.readFile('input.txt', 'utf-8', function (err, data) {
     const rows = data.split(/\r?\n/)
 
     const possibleArragengementsCount = rows.reduce((acc, row) => {
-        const [springs, damagedSpringsGroup] = row.split(' ')
+        let [springs, nums] = row.split(' ')
 
         const possibleRecords = replaceUnknowns(springs)
-        const orderOfdamagedSprings = damagedSpringsGroup.split(',')
+        nums = nums.split(',')
 
         const possibleArrangementsCount = possibleRecords.reduce((acc, value) => {
-            return isValidArrangement(value, orderOfdamagedSprings) ? ++acc : acc
+            return isValidArrangement(value, nums) ? ++acc : acc
         }, 0)
 
         return acc + possibleArrangementsCount
@@ -32,12 +32,12 @@ const replaceUnknowns = (str, possibleRecords = []) => {
     return possibleRecords;
 }
 
-const isValidArrangement = (arrangement, orderOfSprings) => {
-    const operationalSprings = arrangement.replace(/\.+/g, ' ').trim().split(' ')
+const isValidArrangement = (springs, nums) => {
+    const operationalSprings = springs.replace(/\.+/g, ' ').trim().split(' ')
 
-    if (operationalSprings.length != orderOfSprings.length) {
+    if (operationalSprings.length != nums.length) {
         return false
     }
 
-    return operationalSprings.reduce((acc, value, i) => { acc &&= value.length === parseInt(orderOfSprings[i]); return acc }, true)
+    return operationalSprings.reduce((acc, value, i) => { acc &&= value.length === parseInt(nums[i]); return acc }, true)
 }
