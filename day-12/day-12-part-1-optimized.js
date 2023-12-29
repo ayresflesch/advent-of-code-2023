@@ -1,9 +1,6 @@
 const fs = require('fs');
 
 fs.readFile('input.txt', 'utf-8', function (err, data) {
-
-    startTime = new Date();
-
     const rows = data.split(/\r?\n/)
 
     const possibleArragengementsCount = rows.reduce((acc, row) => {
@@ -14,17 +11,9 @@ fs.readFile('input.txt', 'utf-8', function (err, data) {
     }, 0);
 
     console.log(possibleArragengementsCount);
-
-    endTime = new Date();
-    var timeDiff = endTime - startTime; //in ms
-    // strip the ms
-    timeDiff /= 1000;
-    console.log(timeDiff + " seconds");
 })
 
 const count = (config, nums) => {
-    // console.log(config, nums)
-
     if (config.length === 0) {
         return nums.length === 0 ? 1 : 0
     }
@@ -50,7 +39,6 @@ const count = (config, nums) => {
             result += count(config.slice(num + 1), nums.slice(1))
         }
     }
-
 
     return result
 }
